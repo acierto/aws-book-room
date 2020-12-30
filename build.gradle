@@ -13,6 +13,8 @@ java {
 }
 
 repositories {
+    jcenter ()
+    mavenLocal()
     mavenCentral()
 }
 
@@ -21,6 +23,7 @@ dependencies {
     implementation 'com.amazonaws:aws-lambda-java-core:1.2.1'
     implementation 'com.amazonaws:aws-lambda-java-events:3.1.0'
     implementation 'com.amazonaws.serverless:aws-serverless-java-container-springboot2:1.5.2'
+    implementation 'com.sun.activation:javax.activation:1.2.0'
 
     runtimeOnly 'com.amazonaws:aws-lambda-java-log4j2:1.2.0'
 
@@ -36,6 +39,9 @@ task buildArchive(type: Zip) {
         from configurations.runtimeClasspath
     }
 }
+
+build.dependsOn buildArchive
+
 
 test {
     useJUnitPlatform()
